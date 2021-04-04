@@ -35,16 +35,16 @@ OBJEXT = o
 HDREXT = hpp
 
 # compiler options 
-CC					= g++
+CC					= mpic++
 PLATFORM		= -m64
-CFLAGS			= -pedantic -Wextra -Wall $(PLATFORM)
+CFLAGS			= -pedantic -Wall $(PLATFORM)
 RELCFLAGS		= -O2 -s -DNDEBUG -flto
 DCFLAGS			= -g -O0
-STD					= c++17
+STD					= c++11
 EXTRACFLAGS = -Werror
 
 # additional includes
-INCLUDES = $(addprefix -I,)
+INCLUDES = $(addprefix -I, )
 
 # linker options
 LFLAGS = $(PLATFORM)
