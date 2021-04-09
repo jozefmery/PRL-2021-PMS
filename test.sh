@@ -13,7 +13,7 @@ numbers=16;
 processes=5; # log2(n) + 1 = log2(16) + 1 = 4 + 1 = 5
 
 # compile
-mpic++ --prefix /usr/local/share/OpenMPI -o pms pms.cpp 
+mpic++ --prefix /usr/local/share/OpenMPI -o pms pms.cpp --std=c++17
 
 # generate file with random numbers
 dd if=/dev/random bs=1 count=$numbers of=numbers status=none
