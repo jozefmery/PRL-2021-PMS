@@ -16,10 +16,10 @@ processes=5; # log2(n) + 1 = log2(16) + 1 = 4 + 1 = 5
 mpic++ --prefix /usr/local/share/OpenMPI -o pms pms.cpp 
 
 # generate file with random numbers
-dd if=/dev/random bs=1 count=$numbers of=numbers
+dd if=/dev/random bs=1 count=$numbers of=numbers status=none
 
 # run program
-mpirun --prefix /usr/local/share/OpenMPI --host localhost:$processes -np $processes pms 
+mpirun --prefix /usr/local/share/OpenMPI --host localhost:$processes -np $processes pms
 
 # cleanup
 rm -f pms numbers
