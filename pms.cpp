@@ -13,6 +13,7 @@
 #include <string>
 #include <queue>
 #include <cmath>
+#include <chrono>
 
 // OpenMPI
 #include <mpi.h>
@@ -137,7 +138,10 @@ void Processors::First::run() {
   check_processes();
   read_input();
   check_input();
-  print_sequence(input_, " ");
+  if constexpr (!BENCH) {
+
+    print_sequence(input_, " ");
+  }
   sort();
 }
 
@@ -305,8 +309,28 @@ Processors::Last::Last(const Pid pid, const int count)
 
 void Processors::Last::run() {
 
-  sort();
-  print_sequence(output_, "\n");
+  if constexpr (!BENCH) {
+
+    sort();
+    print_sequence(output_, "\n");
+  
+  } else {
+
+    // Benchmarking code adopted from:
+    // https://stackoverflow.com/a/22387757/5150211
+    using std::chrono::high_resolution_clock;
+    using std::chrono::duration;
+    using std::chrono::milliseconds;
+
+    const auto t1 = high_resolution_clock::now();
+    sort();
+    const auto t2 = high_resolution_clock::now();
+
+    // getting number of milliseconds as a double
+    const duration<double, std::milli> diff = t2 - t1;
+
+    std::cout << diff.count() << "ms\n";
+  }
 }
 
 void Processors::Last::sort() {

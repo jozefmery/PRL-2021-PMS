@@ -18,6 +18,8 @@
 
 namespace PMS {
 
+constexpr auto BENCH = false;
+
 enum class ExitCode : int {
 
   OK          = 0,
@@ -49,7 +51,7 @@ using Pipes = std::array<Pipe, 2>;
 
 // helper constants
 constexpr Pid FIRST_PID = 0; 
-constexpr Pid LAST_PID = EXPECTED_PROCESSES - 1; 
+constexpr Pid LAST_PID  = EXPECTED_PROCESSES - 1; 
 
 // shorthand
 // use string streams for improved string composition
